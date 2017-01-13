@@ -16,7 +16,7 @@ import com.android.lofm.voxfeeddemo.model.Publication;
 import com.android.lofm.voxfeeddemo.presenter.PublicationPresenter;
 import com.android.lofm.voxfeeddemo.util.RecyclerItemTouchListener;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class PublicationFragment extends Fragment implements RecyclerItemTouchListener.OnItemClickListener, PublicationPresenter.PublicationListener {
 
@@ -25,7 +25,7 @@ public class PublicationFragment extends Fragment implements RecyclerItemTouchLi
     private LinearLayoutManager llm;
     private PublicationAdapter adapter;
     private PublicationPresenter presenter;
-    private ArrayList<Publication> publications;
+    private List<Publication> publications;
     private ViewFlipper root;
 
     @Override
@@ -36,13 +36,12 @@ public class PublicationFragment extends Fragment implements RecyclerItemTouchLi
         llm = new LinearLayoutManager(getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         publicationsRecyclerView.setLayoutManager(llm);
-        //Setup presenter, adapter and listener
-        presenter = new PublicationPresenter(getContext());
-        publications = presenter.getPublications();
-        adapter = new PublicationAdapter(getContext());
-        adapter.setPublications(publications);
-        publicationsRecyclerView.setAdapter(adapter);
         publicationsRecyclerView.addOnItemTouchListener(new RecyclerItemTouchListener(getContext(), this));
+        adapter = new PublicationAdapter(getContext());
+        presenter = new PublicationPresenter(getContext());
+        if (publications == null) {
+            presenter.getPublications();
+        }
         return root;
     }
 
@@ -50,6 +49,11 @@ public class PublicationFragment extends Fragment implements RecyclerItemTouchLi
     public void onResume() {
         super.onResume();
         presenter.registerListener(this);
+        if (publications == null) {
+            root.setDisplayedChild(0);
+        } else {
+            onSuccess(publications);
+        }
     }
 
     @Override
@@ -64,9 +68,11 @@ public class PublicationFragment extends Fragment implements RecyclerItemTouchLi
     }
 
     @Override
-    public void onSuccess(ArrayList<Publication> publications) {
+    public void onSuccess(List<Publication> publications) {
+        root.setDisplayedChild(1);
         this.publications = publications;
         adapter.setPublications(publications);
+        publicationsRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 

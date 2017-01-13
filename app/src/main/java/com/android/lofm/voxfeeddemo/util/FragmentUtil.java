@@ -1,6 +1,5 @@
 package com.android.lofm.voxfeeddemo.util;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -32,10 +31,10 @@ public class FragmentUtil {
         FragmentTransaction ft = fm.beginTransaction();
         Fragment fragment = Fragment.instantiate(activity, tag, extras);
 //        if (isSecondaryNavigation) {    //Fragment is not in nav drawer menu
-            ft.setCustomAnimations(R.anim.enter, R.anim.exit);
-            ft.replace(R.id.fragmentHolder, fragment, tag);
-            ft.addToBackStack(null);
-            ft.commit();
+        ft.setCustomAnimations(R.anim.enter, R.anim.exit);
+        ft.replace(R.id.fragmentHolder, fragment, tag);
+        ft.addToBackStack(null);
+        ft.commit();
 //        } else {
 //            if (fm.findFragmentByTag(tag) == null) {
 //                ft.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);

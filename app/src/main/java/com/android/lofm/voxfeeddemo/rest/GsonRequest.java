@@ -5,28 +5,29 @@ import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Omar F Martinez on 1/9/17.
+ * Volley adapter for JSON requests that will be parsed into Java objects by Gson.
  */
-
-public class CustomRequest extends Request<JSONObject> {
+public class GsonRequest<T> extends Request<T> {
 
     private static final String PROTOCOL_CHARSET = "utf-8";
-    //Content type for request.
+    /**
+     * Content type for request.
+     */
     private static final String PROTOCOL_CONTENT_TYPE = String.format("application/json; charset=%s", PROTOCOL_CHARSET);
     private final Gson gson = new Gson();
-    private final Response.Listener<JSONObject> listener;
+    private final Listener<T> listener;
+    private Class<T> clazz;
     private Map<String, String> headers;
     private Object requestBody;
 
@@ -35,12 +36,14 @@ public class CustomRequest extends Request<JSONObject> {
      *
      * @param method        The Http Method type as specified by Request.Method
      * @param url           URL of the request to make
+     * @param clazz         Relevant class object, for Gson's reflection
      * @param headers       The http headers
      * @param listener      Callback interface for delivering parsed responses
      * @param errorListener Callback interface for delivering error responses
      */
-    public CustomRequest(int method, String url, Map<String, String> headers, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
+    public GsonRequest(int method, String url, Class<T> clazz, Map<String, String> headers, Listener<T> listener, ErrorListener errorListener) {
         super(method, url, errorListener);
+        this.clazz = clazz;
         this.headers = headers;
         this.listener = listener;
     }
@@ -49,14 +52,14 @@ public class CustomRequest extends Request<JSONObject> {
     public Map<String, String> getHeaders() throws AuthFailureError {
         /** Add required headers. */
         if (headers == null) {
-            headers = new HashMap<>();
+            headers = new HashMap<String, String>();
         }
         headers.put("Accept", "application/json");
         return headers;
     }
 
     @Override
-    protected void deliverResponse(JSONObject response) {
+    protected void deliverResponse(T response) {
         listener.onResponse(response);
     }
 
@@ -77,19 +80,16 @@ public class CustomRequest extends Request<JSONObject> {
     }
 
     @Override
-    protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
-        Response<JSONObject> netResponse = null;
+    protected Response<T> parseNetworkResponse(NetworkResponse response) {
+        Response<T> netResponse = null;
         try {
             String json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
-            netResponse = Response.success(new JSONObject(json), HttpHeaderParser.parseCacheHeaders(response));
+            netResponse = Response.success(gson.fromJson(json, clazz), HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException e) {
             return Response.error(new ParseError(e));
         } catch (JsonSyntaxException e) {
             return Response.error(new ParseError(e));
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
         return netResponse;
     }
-
 }
