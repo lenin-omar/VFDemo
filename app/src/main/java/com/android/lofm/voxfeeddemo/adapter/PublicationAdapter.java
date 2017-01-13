@@ -1,6 +1,7 @@
 package com.android.lofm.voxfeeddemo.adapter;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,9 @@ import android.widget.TextView;
 
 import com.android.lofm.voxfeeddemo.R;
 import com.android.lofm.voxfeeddemo.model.Publication;
+import com.android.lofm.voxfeeddemo.rest.VolleySingleton;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 
 import java.util.List;
 
@@ -22,9 +26,11 @@ public class PublicationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     private Context context;
     private List<Publication> publications;
+    private ImageLoader imageLoader;
 
     public PublicationAdapter(Context context) {
         this.context = context;
+        imageLoader = VolleySingleton.getInstance(context).getImageLoader();
     }
 
     @Override
@@ -39,6 +45,31 @@ public class PublicationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         PublicationViewHolder publicationViewHolder = ((PublicationViewHolder) holder);
         publicationViewHolder.textView.setText(publications.get(position).getPost().getText());
+        publicationViewHolder.coverImage.setImageUrl(publications.get(position).getCampaign().getCoverImage(), imageLoader);
+        publicationViewHolder.circleImage.setImageUrl(publications.get(position).getUser().getProfileImage(), imageLoader);
+        publicationViewHolder.userNameText.setText(publications.get(position).getUser().getUsername());
+        publicationViewHolder.socialNetworkText.setText(publications.get(position).getSocialNetwork());
+        if(publications.get(position).getSocialNetwork().equalsIgnoreCase("facebook")){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                publicationViewHolder.socialNetworkText.setTextColor(context.getColor(R.color.colorFacebook));
+            } else {
+                publicationViewHolder.socialNetworkText.setTextColor(context.getResources().getColor(R.color.colorFacebook));
+            }
+        }
+        if(publications.get(position).getSocialNetwork().equalsIgnoreCase("twitter")){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                publicationViewHolder.socialNetworkText.setTextColor(context.getColor(R.color.colorTwitter));
+            } else {
+                publicationViewHolder.socialNetworkText.setTextColor(context.getResources().getColor(R.color.colorTwitter));
+            }
+        }
+        if(publications.get(position).getSocialNetwork().equalsIgnoreCase("instagram")){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                publicationViewHolder.socialNetworkText.setTextColor(context.getColor(R.color.colorInstagram));
+            } else {
+                publicationViewHolder.socialNetworkText.setTextColor(context.getResources().getColor(R.color.colorInstagram));
+            }
+        }
     }
 
     @Override
@@ -52,13 +83,18 @@ public class PublicationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public class PublicationViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView textView;
+        protected TextView textView, userNameText, socialNetworkText;
+        protected NetworkImageView coverImage, circleImage;
         protected RelativeLayout publicationContainer;
         protected CardView publicationCardView;
 
         public PublicationViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.testText);
+            textView = (TextView) itemView.findViewById(R.id.postText);
+            userNameText = (TextView) itemView.findViewById(R.id.userNameText);
+            socialNetworkText = (TextView) itemView.findViewById(R.id.socialNetworkText);
+            coverImage = (NetworkImageView) itemView.findViewById(R.id.coverImage);
+            circleImage = (NetworkImageView) itemView.findViewById(R.id.circleImage);
             publicationContainer = (RelativeLayout) itemView.findViewById(R.id.publicationContainer);
             publicationCardView = (CardView) publicationContainer.getParent();
         }
