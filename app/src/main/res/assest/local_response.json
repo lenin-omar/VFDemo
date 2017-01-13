@@ -1,0 +1,92 @@
+[
+  {
+    "id": "1",
+    "date": "2016-09-01T06:00:00.000Z",
+    "socialNetwork": "facebook",
+    "user": {
+      "username": "GeekZone",
+      "profileImage": "https://s3.amazonaws.com/voxfeed.assets/apps-development-test/profile-image1.png"
+    },
+    "campaign": {
+      "name": "Daredevil",
+      "coverImage": "https://s3.amazonaws.com/voxfeed.assets/apps-development-test/campaign-cover1.jpg"
+    },
+    "brand": {
+      "name": "Netflix",
+      "logo": "https://s3.amazonaws.com/voxfeed.assets/apps-development-test/campaign-brand1.png"
+    },
+    "post": {
+      "text": "#DaredevilReturns con la nueva temporada en primavera, por si no saben que hacer el próximo fin. #NetflixLoTiene #MarvelSeries",
+      "image": "https://s3.amazonaws.com/voxfeed.assets/apps-development-test/post-image1.jpg",
+      "link": "https://www.facebook.com/VoxFeed/posts/753620444739473"
+    },
+    "stats": {
+      "clicks": 25,
+      "shares": 17,
+      "likes": 54,
+      "comments": 4,
+      "audience": 1200
+    },
+    "earnings": 120
+  },
+  {
+    "id": "2",
+    "date": "2016-10-01T06:00:00.000Z",
+    "socialNetwork": "twitter",
+    "user": {
+      "username": "Cinemaniatix",
+      "profileImage": "https://s3.amazonaws.com/voxfeed.assets/apps-development-test/profile-image2.png"
+    },
+    "campaign": {
+      "name": "Suicide Squad",
+      "coverImage": "https://s3.amazonaws.com/voxfeed.assets/apps-development-test/campaign-cover2.jpg"
+    },
+    "brand": {
+      "name": "DC Comics",
+      "logo": "https://s3.amazonaws.com/voxfeed.assets/apps-development-test/campaign-brand2.jpg"
+    },
+    "post": {
+      "text": "#SuicideSquad pese a las críticas, es una buenísima película que puedes disfrutar, Margot Robbie y Will Smith mis favoritos.",
+      "image": "https://s3.amazonaws.com/voxfeed.assets/apps-development-test/post-image2.jpg",
+      "link": "https://twitter.com/gushuertavargas/status/702652537766223873"
+    },
+    "stats": {
+      "clicks": 10,
+      "shares": 7,
+      "likes": 3,
+      "comments": 0,
+      "audience": 560
+    },
+    "earnings": 17.5
+  },
+  {
+    "id": "3",
+    "date": "2016-10-14T06:00:00.000Z",
+    "socialNetwork": "instagram",
+    "user": {
+      "username": "GeekAstronaut",
+      "profileImage": "https://s3.amazonaws.com/voxfeed.assets/apps-development-test/profile-image3.png"
+    },
+    "campaign": {
+      "name": "Stranger Things",
+      "coverImage": "https://s3.amazonaws.com/voxfeed.assets/apps-development-test/campaign-cover3.jpg"
+    },
+    "brand": {
+      "name": "Netflix",
+      "logo": "https://s3.amazonaws.com/voxfeed.assets/apps-development-test/campaign-brand1.png"
+    },
+    "post": {
+      "text": "#StrangerThings es la receta perfecta para mis ojos, un digno honor a los 80's. Gracias @NetflixLAT por traerla a la vida.",
+      "image": "https://s3.amazonaws.com/voxfeed.assets/apps-development-test/post-image3.jpg",
+      "link": "https://www.instagram.com/p/BErB29ApLBg"
+    },
+    "stats": {
+      "clicks": null,
+      "shares": 39,
+      "likes": 267,
+      "comments": 46,
+      "audience": 103420
+    },
+    "earnings": 1234.56
+  }
+]
