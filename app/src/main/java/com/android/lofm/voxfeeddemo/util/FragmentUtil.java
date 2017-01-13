@@ -26,28 +26,14 @@ public class FragmentUtil {
         return fragment;
     }
 
-    public static Fragment replaceFragmentToContent(FragmentActivity activity, String tag, Bundle extras, boolean isSecondaryNavigation) {
+    public static Fragment replaceFragmentToContent(FragmentActivity activity, String tag, Bundle extras) {
         FragmentManager fm = activity.getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         Fragment fragment = Fragment.instantiate(activity, tag, extras);
-//        if (isSecondaryNavigation) {    //Fragment is not in nav drawer menu
-        ft.setCustomAnimations(R.anim.enter, R.anim.exit);
+        ft.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
         ft.replace(R.id.fragmentHolder, fragment, tag);
         ft.addToBackStack(null);
         ft.commit();
-//        } else {
-//            if (fm.findFragmentByTag(tag) == null) {
-//                ft.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
-//                ft.replace(R.id.fragmentHolder, fragment, tag);
-//                ft.addToBackStack(tag);
-//                ft.commit();
-//            } else if (!fm.findFragmentByTag(tag).isVisible()) {
-//                ft.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
-//                ft.replace(R.id.fragmentHolder, fragment, tag);
-//                ft.addToBackStack(tag);
-//                ft.commit();
-//            }
-//        }
         return fragment;
     }
 

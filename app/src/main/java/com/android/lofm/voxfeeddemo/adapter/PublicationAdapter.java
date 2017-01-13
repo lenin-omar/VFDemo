@@ -16,7 +16,11 @@ import com.android.lofm.voxfeeddemo.rest.VolleySingleton;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Omar F Martinez on 1/13/17.
@@ -70,6 +74,20 @@ public class PublicationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 publicationViewHolder.socialNetworkText.setTextColor(context.getResources().getColor(R.color.colorInstagram));
             }
         }
+        publicationViewHolder.fechaText.setText(getFormattedDate(publications.get(position).getDate()));
+    }
+
+    public static String getFormattedDate(String rawDate) {
+        String formatted = "";
+        String pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+        try {
+            Date date = new SimpleDateFormat(pattern, Locale.US).parse(rawDate);
+            formatted = new SimpleDateFormat("yyyy/MM/dd", Locale.US).format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return rawDate;
+        }
+        return formatted;
     }
 
     @Override
@@ -83,7 +101,7 @@ public class PublicationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public class PublicationViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView textView, userNameText, socialNetworkText;
+        protected TextView textView, userNameText, socialNetworkText, fechaText;
         protected NetworkImageView coverImage, circleImage;
         protected RelativeLayout publicationContainer;
         protected CardView publicationCardView;
@@ -93,6 +111,7 @@ public class PublicationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             textView = (TextView) itemView.findViewById(R.id.postText);
             userNameText = (TextView) itemView.findViewById(R.id.userNameText);
             socialNetworkText = (TextView) itemView.findViewById(R.id.socialNetworkText);
+            fechaText = (TextView) itemView.findViewById(R.id.fechaText);
             coverImage = (NetworkImageView) itemView.findViewById(R.id.coverImage);
             circleImage = (NetworkImageView) itemView.findViewById(R.id.circleImage);
             publicationContainer = (RelativeLayout) itemView.findViewById(R.id.publicationContainer);

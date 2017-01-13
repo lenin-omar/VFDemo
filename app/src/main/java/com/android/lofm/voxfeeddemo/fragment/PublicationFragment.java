@@ -14,6 +14,7 @@ import com.android.lofm.voxfeeddemo.R;
 import com.android.lofm.voxfeeddemo.adapter.PublicationAdapter;
 import com.android.lofm.voxfeeddemo.model.Publication;
 import com.android.lofm.voxfeeddemo.presenter.PublicationPresenter;
+import com.android.lofm.voxfeeddemo.util.FragmentUtil;
 import com.android.lofm.voxfeeddemo.util.RecyclerItemTouchListener;
 
 import java.util.List;
@@ -65,6 +66,8 @@ public class PublicationFragment extends Fragment implements RecyclerItemTouchLi
     @Override
     public void onItemClick(View view, int position) {
         //TODO: Go to next fragment FragmentUtil.replaceFragmentToContent()
+        Toast.makeText(getContext(), "GO TO NEXT FRAGMENT", Toast.LENGTH_LONG).show();
+        FragmentUtil.replaceFragmentToContent(getActivity(), DetailFragment.TAG, null);
     }
 
     @Override
@@ -78,7 +81,7 @@ public class PublicationFragment extends Fragment implements RecyclerItemTouchLi
 
     @Override
     public void onError(String errorMessage) {
-        Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
     }
 
 }
