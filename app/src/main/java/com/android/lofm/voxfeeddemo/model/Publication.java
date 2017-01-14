@@ -1,6 +1,9 @@
 package com.android.lofm.voxfeeddemo.model;
 
-public class Publication {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Publication implements Parcelable {
 
     private String id;
     private String date;
@@ -11,6 +14,25 @@ public class Publication {
     private Post post;
     private Stats stats;
     private Double earnings;
+
+    protected Publication(Parcel in) {
+        id = in.readString();
+        date = in.readString();
+        socialNetwork = in.readString();
+    }
+
+    public static final Creator<Publication> CREATOR = new Creator<Publication>() {
+
+        @Override
+        public Publication createFromParcel(Parcel in) {
+            return new Publication(in);
+        }
+
+        @Override
+        public Publication[] newArray(int size) {
+            return new Publication[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -82,6 +104,18 @@ public class Publication {
 
     public void setEarnings(Double earnings) {
         this.earnings = earnings;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(date);
+        dest.writeString(socialNetwork);
     }
 
 }

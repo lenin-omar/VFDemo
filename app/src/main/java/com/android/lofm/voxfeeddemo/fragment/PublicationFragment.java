@@ -65,8 +65,6 @@ public class PublicationFragment extends Fragment implements RecyclerItemTouchLi
 
     @Override
     public void onItemClick(View view, int position) {
-        //TODO: Go to next fragment FragmentUtil.replaceFragmentToContent()
-        Toast.makeText(getContext(), "GO TO NEXT FRAGMENT", Toast.LENGTH_LONG).show();
         FragmentUtil.replaceFragmentToContent(getActivity(), DetailFragment.TAG, null);
     }
 
