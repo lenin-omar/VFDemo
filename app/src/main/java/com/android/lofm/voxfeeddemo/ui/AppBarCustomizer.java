@@ -1,6 +1,6 @@
 package com.android.lofm.voxfeeddemo.ui;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Omar F Martinez on 1/14/17.
@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface AppBarCustomizer {
 
-    void setScrollabelAppBarVisible(boolean visible, List<String> values);
+    void setScrollabelAppBarVisible(boolean visible, Map<String, String> values);
 
 }

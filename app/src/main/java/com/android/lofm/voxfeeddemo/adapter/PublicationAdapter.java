@@ -13,14 +13,11 @@ import android.widget.TextView;
 import com.android.lofm.voxfeeddemo.R;
 import com.android.lofm.voxfeeddemo.model.Publication;
 import com.android.lofm.voxfeeddemo.rest.VolleySingleton;
+import com.android.lofm.voxfeeddemo.util.VFUtil;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by Omar F Martinez on 1/13/17.
@@ -54,41 +51,28 @@ public class PublicationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         publicationViewHolder.circleImage.setImageUrl(publications.get(position).getUser().getProfileImage(), imageLoader);
         publicationViewHolder.userNameText.setText(publications.get(position).getUser().getUsername());
         publicationViewHolder.socialNetworkText.setText(publications.get(position).getSocialNetwork());
-        if(publications.get(position).getSocialNetwork().equalsIgnoreCase("facebook")){
+        if (publications.get(position).getSocialNetwork().equalsIgnoreCase("facebook")) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 publicationViewHolder.socialNetworkText.setTextColor(context.getColor(R.color.colorFacebook));
             } else {
                 publicationViewHolder.socialNetworkText.setTextColor(context.getResources().getColor(R.color.colorFacebook));
             }
         }
-        if(publications.get(position).getSocialNetwork().equalsIgnoreCase("twitter")){
+        if (publications.get(position).getSocialNetwork().equalsIgnoreCase("twitter")) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 publicationViewHolder.socialNetworkText.setTextColor(context.getColor(R.color.colorTwitter));
             } else {
                 publicationViewHolder.socialNetworkText.setTextColor(context.getResources().getColor(R.color.colorTwitter));
             }
         }
-        if(publications.get(position).getSocialNetwork().equalsIgnoreCase("instagram")){
+        if (publications.get(position).getSocialNetwork().equalsIgnoreCase("instagram")) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 publicationViewHolder.socialNetworkText.setTextColor(context.getColor(R.color.colorInstagram));
             } else {
                 publicationViewHolder.socialNetworkText.setTextColor(context.getResources().getColor(R.color.colorInstagram));
             }
         }
-        publicationViewHolder.fechaText.setText(getFormattedDate(publications.get(position).getDate()));
-    }
-
-    public static String getFormattedDate(String rawDate) {
-        String formatted = "";
-        String pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-        try {
-            Date date = new SimpleDateFormat(pattern, Locale.US).parse(rawDate);
-            formatted = new SimpleDateFormat("yyyy/MM/dd", Locale.US).format(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return rawDate;
-        }
-        return formatted;
+        publicationViewHolder.fechaText.setText(VFUtil.getFormattedDate(publications.get(position).getDate()));
     }
 
     @Override

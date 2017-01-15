@@ -5,6 +5,18 @@ import android.os.Parcelable;
 
 public class Publication implements Parcelable {
 
+    public static final Creator<Publication> CREATOR = new Creator<Publication>() {
+
+        @Override
+        public Publication createFromParcel(Parcel in) {
+            return new Publication(in);
+        }
+
+        @Override
+        public Publication[] newArray(int size) {
+            return new Publication[size];
+        }
+    };
     private String id;
     private String date;
     private String socialNetwork;
@@ -27,19 +39,6 @@ public class Publication implements Parcelable {
         campaign = (Campaign) in.readValue(Campaign.class.getClassLoader());
         earnings = in.readDouble();
     }
-
-    public static final Creator<Publication> CREATOR = new Creator<Publication>() {
-
-        @Override
-        public Publication createFromParcel(Parcel in) {
-            return new Publication(in);
-        }
-
-        @Override
-        public Publication[] newArray(int size) {
-            return new Publication[size];
-        }
-    };
 
     public String getId() {
         return id;

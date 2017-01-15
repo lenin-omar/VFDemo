@@ -15,8 +15,8 @@ import com.android.lofm.voxfeeddemo.adapter.PublicationAdapter;
 import com.android.lofm.voxfeeddemo.model.Publication;
 import com.android.lofm.voxfeeddemo.presenter.PublicationPresenter;
 import com.android.lofm.voxfeeddemo.ui.AppBarCustomizer;
-import com.android.lofm.voxfeeddemo.util.FragmentUtil;
 import com.android.lofm.voxfeeddemo.util.RecyclerItemTouchListener;
+import com.android.lofm.voxfeeddemo.util.VFUtil;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ public class PublicationFragment extends Fragment implements RecyclerItemTouchLi
         if (publications == null) {
             presenter.getPublications();
         }
-        ((AppBarCustomizer)getActivity()).setScrollabelAppBarVisible(false, null);
+        ((AppBarCustomizer) getActivity()).setScrollabelAppBarVisible(false, null);
         return root;
     }
 
@@ -69,7 +69,7 @@ public class PublicationFragment extends Fragment implements RecyclerItemTouchLi
     public void onItemClick(View view, int position) {
         Bundle bundle = new Bundle();
         bundle.putParcelable("selectedPublicationKey", publications.get(position));
-        FragmentUtil.replaceFragmentToContent(getActivity(), DetailFragment.TAG, bundle);
+        VFUtil.replaceFragmentToContent(getActivity(), DetailFragment.TAG, bundle);
     }
 
     @Override

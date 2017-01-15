@@ -8,11 +8,17 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.android.lofm.voxfeeddemo.R;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * Created by Omar F Martinez on 1/7/17.
  */
 
-public class FragmentUtil {
+public class VFUtil {
 
     public static Fragment addFragmentToContent(FragmentActivity activity, String tag, Bundle extras) { //Used to add fragment to screen when app is launched
         FragmentManager fm = activity.getSupportFragmentManager();
@@ -35,6 +41,30 @@ public class FragmentUtil {
         ft.addToBackStack(null);
         ft.commit();
         return fragment;
+    }
+
+    public static String getFormattedDate(String rawDate) {
+        String formatted = "";
+        String pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+        try {
+            Date date = new SimpleDateFormat(pattern, Locale.US).parse(rawDate);
+            formatted = new SimpleDateFormat("yyyy/MM/dd", Locale.US).format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return rawDate;
+        }
+        return formatted;
+    }
+
+    public static String getFormattedMoney(double rawQty) {
+        String formatted = "";
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        try {
+            formatted = formatter.format(rawQty);
+        } catch (IllegalArgumentException e) {
+            formatted = String.valueOf(rawQty);
+        }
+        return formatted;
     }
 
 }
