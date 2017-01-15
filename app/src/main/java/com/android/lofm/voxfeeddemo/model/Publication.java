@@ -13,12 +13,19 @@ public class Publication implements Parcelable {
     private Brand brand;
     private Post post;
     private Stats stats;
-    private Double earnings;
+    private double earnings;
 
     protected Publication(Parcel in) {
         id = in.readString();
         date = in.readString();
         socialNetwork = in.readString();
+        user = (User) in.readValue(User.class.getClassLoader());
+        campaign = (Campaign) in.readValue(Campaign.class.getClassLoader());
+        brand = (Brand) in.readValue(Brand.class.getClassLoader());
+        post = (Post) in.readValue(Post.class.getClassLoader());
+        stats = (Stats) in.readValue(Stats.class.getClassLoader());
+        campaign = (Campaign) in.readValue(Campaign.class.getClassLoader());
+        earnings = in.readDouble();
     }
 
     public static final Creator<Publication> CREATOR = new Creator<Publication>() {
@@ -98,11 +105,11 @@ public class Publication implements Parcelable {
         this.stats = stats;
     }
 
-    public Double getEarnings() {
+    public double getEarnings() {
         return earnings;
     }
 
-    public void setEarnings(Double earnings) {
+    public void setEarnings(double earnings) {
         this.earnings = earnings;
     }
 

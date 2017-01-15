@@ -14,7 +14,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:id="@+id/publicationContainer"
-        android:padding="10dp"
+        android:padding="5dp"
         android:layout_height="wrap_content">
 
         <RelativeLayout
@@ -98,7 +98,7 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 
         <com.android.volley.toolbox.NetworkImageView
-            android:id="@+id/coverImage"
+            android:id="@+id/postImage"
             android:layout_below="@+id/postText"
             android:layout_width="match_parent"
             android:layout_height="200dp"

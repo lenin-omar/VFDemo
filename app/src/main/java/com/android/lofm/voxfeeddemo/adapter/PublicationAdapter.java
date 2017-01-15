@@ -49,7 +49,8 @@ public class PublicationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         PublicationViewHolder publicationViewHolder = ((PublicationViewHolder) holder);
         publicationViewHolder.textView.setText(publications.get(position).getPost().getText());
-        publicationViewHolder.coverImage.setImageUrl(publications.get(position).getCampaign().getCoverImage(), imageLoader);
+        publicationViewHolder.postImage.setImageUrl(publications.get(position).getPost().getImage(), imageLoader);
+        publicationViewHolder.postImage.setAdjustViewBounds(true);
         publicationViewHolder.circleImage.setImageUrl(publications.get(position).getUser().getProfileImage(), imageLoader);
         publicationViewHolder.userNameText.setText(publications.get(position).getUser().getUsername());
         publicationViewHolder.socialNetworkText.setText(publications.get(position).getSocialNetwork());
@@ -102,7 +103,7 @@ public class PublicationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public class PublicationViewHolder extends RecyclerView.ViewHolder {
 
         protected TextView textView, userNameText, socialNetworkText, fechaText;
-        protected NetworkImageView coverImage, circleImage;
+        protected NetworkImageView postImage, circleImage;
         protected RelativeLayout publicationContainer;
         protected CardView publicationCardView;
 
@@ -112,7 +113,7 @@ public class PublicationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             userNameText = (TextView) itemView.findViewById(R.id.userNameText);
             socialNetworkText = (TextView) itemView.findViewById(R.id.socialNetworkText);
             fechaText = (TextView) itemView.findViewById(R.id.fechaText);
-            coverImage = (NetworkImageView) itemView.findViewById(R.id.coverImage);
+            postImage = (NetworkImageView) itemView.findViewById(R.id.postImage);
             circleImage = (NetworkImageView) itemView.findViewById(R.id.circleImage);
             publicationContainer = (RelativeLayout) itemView.findViewById(R.id.publicationContainer);
             publicationCardView = (CardView) publicationContainer.getParent();
