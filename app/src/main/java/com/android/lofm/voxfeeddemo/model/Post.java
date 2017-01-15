@@ -5,16 +5,6 @@ import android.os.Parcelable;
 
 public class Post implements Parcelable {
 
-    private String text;
-    private String image;
-    private String link;
-
-    protected Post(Parcel in) {
-        text = in.readString();
-        image = in.readString();
-        link = in.readString();
-    }
-
     public static final Creator<Post> CREATOR = new Creator<Post>() {
 
         @Override
@@ -27,6 +17,15 @@ public class Post implements Parcelable {
             return new Post[size];
         }
     };
+    private String text;
+    private String image;
+    private String link;
+
+    protected Post(Parcel in) {
+        text = in.readString();
+        image = in.readString();
+        link = in.readString();
+    }
 
     public String getText() {
         return text;

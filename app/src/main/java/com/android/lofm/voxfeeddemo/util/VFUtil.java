@@ -71,6 +71,18 @@ public class VFUtil {
         return formatted;
     }
 
+    public static String getFormattedNumber(double rawQty) {
+        String formatted = "";
+        NumberFormat formatter = NumberFormat.getNumberInstance();
+        try {
+            formatted = formatter.format(rawQty);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            formatted = String.valueOf(rawQty);
+        }
+        return formatted;
+    }
+
     public static void setTextColor(String socialNetwork, TextView socialNetworkText, Context context) {
         if (socialNetwork.equalsIgnoreCase("facebook")) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

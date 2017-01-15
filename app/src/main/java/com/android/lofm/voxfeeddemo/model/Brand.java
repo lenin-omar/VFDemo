@@ -5,14 +5,6 @@ import android.os.Parcelable;
 
 public class Brand implements Parcelable {
 
-    private String name;
-    private String logo;
-
-    protected Brand(Parcel in) {
-        name = in.readString();
-        logo = in.readString();
-    }
-
     public static final Creator<Brand> CREATOR = new Creator<Brand>() {
 
         @Override
@@ -25,6 +17,13 @@ public class Brand implements Parcelable {
             return new Brand[size];
         }
     };
+    private String name;
+    private String logo;
+
+    protected Brand(Parcel in) {
+        name = in.readString();
+        logo = in.readString();
+    }
 
     public String getName() {
         return name;

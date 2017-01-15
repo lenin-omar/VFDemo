@@ -1,33 +1,28 @@
 package com.android.lofm.voxfeeddemo;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.android.lofm.voxfeeddemo.adapter.DetailAdapter;
 import com.android.lofm.voxfeeddemo.model.Publication;
 import com.android.lofm.voxfeeddemo.presenter.DetailPresenter;
 import com.android.lofm.voxfeeddemo.rest.VolleySingleton;
-import com.android.lofm.voxfeeddemo.util.RecyclerItemTouchListener;
 import com.android.lofm.voxfeeddemo.util.VFUtil;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
 import java.util.List;
-import java.util.Map;
 
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
-//    private AppBarLayout appBar;
     private NetworkImageView coordinatorImage, brandCircleImage;
     private ImageLoader imageLoader;
     private TextView brandName, campaignName, earningsText, seePublicationLink;
-//    private FrameLayout earningsContainer;
     private Publication publication;
     private RecyclerView postsRecyclerView;
     private LinearLayoutManager llm;
@@ -48,9 +43,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         setRecyclerView();
     }
 
-    private void initViews(){
-//        appBar = (AppBarLayout) findViewById(R.id.app_bar);
-//        earningsContainer = (FrameLayout) findViewById(R.id.earningsContainer);
+    private void initViews() {
         coordinatorImage = (NetworkImageView) findViewById(R.id.coordinatorImage);
         brandCircleImage = (NetworkImageView) findViewById(R.id.brandCircleImage);
         brandName = (TextView) findViewById(R.id.brandName);
@@ -87,6 +80,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        //TODO: Open WebView
+        Intent intent = new Intent(this, WebActivity.class);
+        intent.putExtra("com.android.lofm.voxfeeddemo.model.post.link", publication.getPost().getLink());
+        startActivity(intent);
     }
 }

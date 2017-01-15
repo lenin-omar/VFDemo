@@ -40,27 +40,4 @@ public class SplashActivity extends AppCompatActivity {
         }, SPLASH_TIME_OUT);
     }
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-//        setContentView(R.layout.activity_splash);
-//        new Handler().postDelayed(new Runnable() {
-//
-//            /*
-//             * Showing splash screen with a timer.
-//             * This will be useful when you want to show case your app/company logo
-//             */
-//
-//            @Override
-//            public void run() {
-//                // This method will be executed once the timer is over
-//                // Start your app main activity
-//                Intent i = new Intent(SplashActivity.this, MainActivity.class);
-//                startActivity(i);
-//                finish();
-//            }
-//        }, SPLASH_TIME_OUT);
-//    }
-
 }

@@ -2,6 +2,7 @@ package com.android.lofm.voxfeeddemo.presenter;
 
 import android.content.Context;
 
+import com.android.lofm.voxfeeddemo.R;
 import com.android.lofm.voxfeeddemo.model.Publication;
 import com.android.lofm.voxfeeddemo.rest.GsonRequest;
 import com.android.lofm.voxfeeddemo.rest.VolleySingleton;
@@ -40,7 +41,7 @@ public class PublicationPresenter implements Response.Listener<Object>, Response
     }
 
     public void getPublications() {
-        final String url = "https://api.voxfeed.com/public/promoted_messages";  //TODO: Change to string resource
+        final String url = context.getString(R.string.endpoint);
         GsonRequest request = new GsonRequest(Request.Method.GET, url, Publication[].class, null, this, this);
         VolleySingleton.getInstance(context).getRequestQueue().add(request);
     }
@@ -56,7 +57,7 @@ public class PublicationPresenter implements Response.Listener<Object>, Response
     public void onErrorResponse(VolleyError error) {
         error.printStackTrace();
         getLocalJson();
-        listener.onError("No es posible conectarse con el servidor");   //TODO: Change to string resource
+        listener.onError(context.getString(R.string.server_error));
     }
 
     public void getLocalJson() {
@@ -69,7 +70,7 @@ public class PublicationPresenter implements Response.Listener<Object>, Response
             listener.onSuccess(publications);
         } catch (IOException e) {
             e.printStackTrace();
-            listener.onError("No es posible obtener el JSON local");   //TODO: Change to string resource
+            listener.onError(context.getString(R.string.local_error));
         }
     }
 

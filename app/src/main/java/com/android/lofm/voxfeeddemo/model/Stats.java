@@ -5,6 +5,18 @@ import android.os.Parcelable;
 
 public class Stats implements Parcelable {
 
+    public static final Creator<Stats> CREATOR = new Creator<Stats>() {
+
+        @Override
+        public Stats createFromParcel(Parcel in) {
+            return new Stats(in);
+        }
+
+        @Override
+        public Stats[] newArray(int size) {
+            return new Stats[size];
+        }
+    };
     private int clicks;
     private int shares;
     private int likes;
@@ -18,19 +30,6 @@ public class Stats implements Parcelable {
         comments = in.readInt();
         audience = in.readInt();
     }
-
-    public static final Creator<Stats> CREATOR = new Creator<Stats>() {
-
-        @Override
-        public Stats createFromParcel(Parcel in) {
-            return new Stats(in);
-        }
-
-        @Override
-        public Stats[] newArray(int size) {
-            return new Stats[size];
-        }
-    };
 
     public int getClicks() {
         return clicks;

@@ -7,4 +7,7 @@
     <string name="comments">Comentarios</string>
     <string name="chare">Compartido</string>
     <string name="reach">Alcance</string>
+    <string name="endpoint">https://api.voxfeed.com/public/promoted_messages</string>
+    <string name="server_error">No es posible conectarse con el servidor</string>
+    <string name="local_error">No es posible obtener el JSON local</string>
 </resources>

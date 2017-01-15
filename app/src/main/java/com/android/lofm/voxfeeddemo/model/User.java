@@ -5,14 +5,6 @@ import android.os.Parcelable;
 
 public class User implements Parcelable {
 
-    private String username;
-    private String profileImage;
-
-    protected User(Parcel in) {
-        username = in.readString();
-        profileImage = in.readString();
-    }
-
     public static final Creator<User> CREATOR = new Creator<User>() {
 
         @Override
@@ -25,6 +17,13 @@ public class User implements Parcelable {
             return new User[size];
         }
     };
+    private String username;
+    private String profileImage;
+
+    protected User(Parcel in) {
+        username = in.readString();
+        profileImage = in.readString();
+    }
 
     public String getUsername() {
         return username;

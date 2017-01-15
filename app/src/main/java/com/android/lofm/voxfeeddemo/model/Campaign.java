@@ -5,14 +5,6 @@ import android.os.Parcelable;
 
 public class Campaign implements Parcelable {
 
-    private String name;
-    private String coverImage;
-
-    protected Campaign(Parcel in) {
-        name = in.readString();
-        coverImage = in.readString();
-    }
-
     public static final Creator<Campaign> CREATOR = new Creator<Campaign>() {
 
         @Override
@@ -25,6 +17,13 @@ public class Campaign implements Parcelable {
             return new Campaign[size];
         }
     };
+    private String name;
+    private String coverImage;
+
+    protected Campaign(Parcel in) {
+        name = in.readString();
+        coverImage = in.readString();
+    }
 
     public String getName() {
         return name;

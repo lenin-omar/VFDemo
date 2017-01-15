@@ -1,7 +1,6 @@
 package com.android.lofm.voxfeeddemo.adapter;
 
 import android.content.Context;
-import android.os.Build;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -54,8 +53,6 @@ public class PublicationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         VFUtil.setTextColor(publications.get(position).getSocialNetwork(), publicationViewHolder.socialNetworkText, context);
         publicationViewHolder.fechaText.setText(VFUtil.getFormattedDate(publications.get(position).getDate()));
     }
-
-
 
     @Override
     public int getItemCount() {

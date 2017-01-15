@@ -11,10 +11,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.lofm.voxfeeddemo.R;
-import com.android.volley.toolbox.NetworkImageView;
+import com.android.lofm.voxfeeddemo.util.VFUtil;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Omar F Martinez on 1/13/17.
@@ -44,27 +43,22 @@ public class DetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             case 0:
                 detailViewHolder.statsIcon.setImageResource(R.mipmap.ic_icon_likes);
                 detailViewHolder.statsText.setText(R.string.i_like_it);
-                detailViewHolder.statsNumber.setText(postDetails.get(position));
                 break;
             case 1:
                 detailViewHolder.statsIcon.setImageResource(R.mipmap.ic_icon_clicks);
                 detailViewHolder.statsText.setText(R.string.clicks);
-                detailViewHolder.statsNumber.setText(postDetails.get(position));
                 break;
             case 2:
                 detailViewHolder.statsIcon.setImageResource(R.mipmap.ic_icon_comments);
                 detailViewHolder.statsText.setText(R.string.comments);
-                detailViewHolder.statsNumber.setText(postDetails.get(position));
                 break;
             case 3:
                 detailViewHolder.statsIcon.setImageResource(R.mipmap.ic_icon_share);
                 detailViewHolder.statsText.setText(R.string.chare);
-                detailViewHolder.statsNumber.setText(postDetails.get(position));
                 break;
             case 4:
                 detailViewHolder.statsIcon.setImageResource(R.mipmap.ic_icon_reach);
                 detailViewHolder.statsText.setText(R.string.reach);
-                detailViewHolder.statsNumber.setText(postDetails.get(position));
                 break;
             default:
                 detailViewHolder.statsIcon.setImageResource(R.mipmap.ic_launcher);
@@ -72,6 +66,7 @@ public class DetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 detailViewHolder.statsNumber.setText("0");
                 break;
         }
+        detailViewHolder.statsNumber.setText(VFUtil.getFormattedNumber(new Double(postDetails.get(position))));
     }
 
     @Override
