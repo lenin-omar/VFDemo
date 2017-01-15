@@ -17,6 +17,7 @@ import com.android.lofm.voxfeeddemo.presenter.DetailPresenter;
 import com.android.lofm.voxfeeddemo.ui.AppBarCustomizer;
 import com.android.lofm.voxfeeddemo.util.RecyclerItemTouchListener;
 
+import java.util.List;
 import java.util.Map;
 
 public class DetailFragment extends Fragment implements RecyclerItemTouchListener.OnItemClickListener {
@@ -26,7 +27,7 @@ public class DetailFragment extends Fragment implements RecyclerItemTouchListene
     private LinearLayoutManager llm;
     private DetailAdapter adapter;
     private Publication publication;
-    private Map<String, String> postDetails;
+    private List<String> postDetails;
     private ViewFlipper root;
     private DetailPresenter detailPresenter;
 

@@ -18,21 +18,22 @@ import com.android.lofm.voxfeeddemo.util.VFUtil;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
+import java.util.List;
 import java.util.Map;
 
-public class DetailActivity extends AppCompatActivity implements RecyclerItemTouchListener.OnItemClickListener {
+public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private AppBarLayout appBar;
+//    private AppBarLayout appBar;
     private NetworkImageView coordinatorImage, brandCircleImage;
     private ImageLoader imageLoader;
-    private TextView brandName, campaignName, earningsText;
-    private FrameLayout earningsContainer;
+    private TextView brandName, campaignName, earningsText, seePublicationLink;
+//    private FrameLayout earningsContainer;
     private Publication publication;
     private RecyclerView postsRecyclerView;
     private LinearLayoutManager llm;
     private DetailAdapter adapter;
     private DetailPresenter detailPresenter;
-    private Map<String, String> postDetails;
+    private List<String> postDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +49,14 @@ public class DetailActivity extends AppCompatActivity implements RecyclerItemTou
     }
 
     private void initViews(){
-        appBar = (AppBarLayout) findViewById(R.id.app_bar);
-        earningsContainer = (FrameLayout) findViewById(R.id.earningsContainer);
+//        appBar = (AppBarLayout) findViewById(R.id.app_bar);
+//        earningsContainer = (FrameLayout) findViewById(R.id.earningsContainer);
         coordinatorImage = (NetworkImageView) findViewById(R.id.coordinatorImage);
         brandCircleImage = (NetworkImageView) findViewById(R.id.brandCircleImage);
         brandName = (TextView) findViewById(R.id.brandName);
         campaignName = (TextView) findViewById(R.id.campaignName);
         earningsText = (TextView) findViewById(R.id.earningsText);
+        seePublicationLink = (TextView) findViewById(R.id.seePublicationLink);
         postsRecyclerView = (RecyclerView) findViewById(R.id.postsRecyclerView);
     }
 
@@ -65,6 +67,9 @@ public class DetailActivity extends AppCompatActivity implements RecyclerItemTou
         brandName.setText(publication.getBrand().getName());
         campaignName.setText(publication.getCampaign().getName());
         earningsText.setText(VFUtil.getFormattedMoney(publication.getEarnings()));
+        seePublicationLink.setText(getString(R.string.publication_in_social_network) + " " + publication.getSocialNetwork().toUpperCase());
+        VFUtil.setTextColor(publication.getSocialNetwork(), seePublicationLink, this);
+        seePublicationLink.setOnClickListener(this);
     }
 
     private void setRecyclerView() {
@@ -72,14 +77,16 @@ public class DetailActivity extends AppCompatActivity implements RecyclerItemTou
         llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         postsRecyclerView.setLayoutManager(llm);
-        postsRecyclerView.addOnItemTouchListener(new RecyclerItemTouchListener(this, this));
         adapter = new DetailAdapter(this);
         detailPresenter = new DetailPresenter();
         postDetails = detailPresenter.getDetailsHashMap(publication);
         adapter.setSelectedPublication(postDetails);
+        postsRecyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void onItemClick(View view, int position) {
+    public void onClick(View v) {
+        //TODO: Open WebView
     }
 }

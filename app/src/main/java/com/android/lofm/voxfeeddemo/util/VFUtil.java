@@ -1,10 +1,13 @@
 package com.android.lofm.voxfeeddemo.util;
 
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.TextView;
 
 import com.android.lofm.voxfeeddemo.R;
 
@@ -66,6 +69,30 @@ public class VFUtil {
             formatted = String.valueOf(rawQty);
         }
         return formatted;
+    }
+
+    public static void setTextColor(String socialNetwork, TextView socialNetworkText, Context context) {
+        if (socialNetwork.equalsIgnoreCase("facebook")) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                socialNetworkText.setTextColor(context.getColor(R.color.colorFacebook));
+            } else {
+                socialNetworkText.setTextColor(context.getResources().getColor(R.color.colorFacebook));
+            }
+        }
+        if (socialNetwork.equalsIgnoreCase("twitter")) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                socialNetworkText.setTextColor(context.getColor(R.color.colorTwitter));
+            } else {
+                socialNetworkText.setTextColor(context.getResources().getColor(R.color.colorTwitter));
+            }
+        }
+        if (socialNetwork.equalsIgnoreCase("instagram")) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                socialNetworkText.setTextColor(context.getColor(R.color.colorInstagram));
+            } else {
+                socialNetworkText.setTextColor(context.getResources().getColor(R.color.colorInstagram));
+            }
+        }
     }
 
 }

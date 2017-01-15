@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">VoxFeed</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="campaign_invite">Invitación a campañas</string>
+    <string name="publication_in_social_network">VER PUBLICACIÓN EN</string>
+    <string name="i_like_it">Me gusta</string>
+    <string name="clicks">Clics</string>
+    <string name="comments">Comentarios</string>
+    <string name="chare">Compartido</string>
+    <string name="reach">Alcance</string>
 </resources>

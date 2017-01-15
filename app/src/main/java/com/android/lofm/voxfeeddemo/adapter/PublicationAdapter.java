@@ -51,29 +51,11 @@ public class PublicationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         publicationViewHolder.circleImage.setImageUrl(publications.get(position).getUser().getProfileImage(), imageLoader);
         publicationViewHolder.userNameText.setText(publications.get(position).getUser().getUsername());
         publicationViewHolder.socialNetworkText.setText(publications.get(position).getSocialNetwork());
-        if (publications.get(position).getSocialNetwork().equalsIgnoreCase("facebook")) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                publicationViewHolder.socialNetworkText.setTextColor(context.getColor(R.color.colorFacebook));
-            } else {
-                publicationViewHolder.socialNetworkText.setTextColor(context.getResources().getColor(R.color.colorFacebook));
-            }
-        }
-        if (publications.get(position).getSocialNetwork().equalsIgnoreCase("twitter")) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                publicationViewHolder.socialNetworkText.setTextColor(context.getColor(R.color.colorTwitter));
-            } else {
-                publicationViewHolder.socialNetworkText.setTextColor(context.getResources().getColor(R.color.colorTwitter));
-            }
-        }
-        if (publications.get(position).getSocialNetwork().equalsIgnoreCase("instagram")) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                publicationViewHolder.socialNetworkText.setTextColor(context.getColor(R.color.colorInstagram));
-            } else {
-                publicationViewHolder.socialNetworkText.setTextColor(context.getResources().getColor(R.color.colorInstagram));
-            }
-        }
+        VFUtil.setTextColor(publications.get(position).getSocialNetwork(), publicationViewHolder.socialNetworkText, context);
         publicationViewHolder.fechaText.setText(VFUtil.getFormattedDate(publications.get(position).getDate()));
     }
+
+
 
     @Override
     public int getItemCount() {
