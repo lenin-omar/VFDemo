@@ -14,11 +14,11 @@ public class DetailPresenter {
 
     public Map<String, String> getDetailsHashMap(Publication publication) {
         Map<String, String> postDetails = new HashMap<>();
-        postDetails.put("campaignName", publication.getCampaign().getName());
-        postDetails.put("campaignImage", publication.getCampaign().getCoverImage());
-        postDetails.put("brandName", publication.getBrand().getName());
-        postDetails.put("brandLogo", publication.getBrand().getLogo());
-        postDetails.put("earnings", VFUtil.getFormattedMoney(publication.getEarnings()));
+//        postDetails.put("campaignName", publication.getCampaign().getName());
+//        postDetails.put("campaignImage", publication.getCampaign().getCoverImage());
+//        postDetails.put("brandName", publication.getBrand().getName());
+//        postDetails.put("brandLogo", publication.getBrand().getLogo());
+//        postDetails.put("earnings", VFUtil.getFormattedMoney(publication.getEarnings()));
         postDetails.put("clicks", String.valueOf(publication.getStats().getClicks()));
         postDetails.put("shares", String.valueOf(publication.getStats().getShares()));
         postDetails.put("likes", String.valueOf(publication.getStats().getLikes()));
