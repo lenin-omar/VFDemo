@@ -1,5 +1,6 @@
 package com.android.lofm.voxfeeddemo.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.android.lofm.voxfeeddemo.DetailActivity;
 import com.android.lofm.voxfeeddemo.R;
 import com.android.lofm.voxfeeddemo.adapter.PublicationAdapter;
 import com.android.lofm.voxfeeddemo.model.Publication;
@@ -44,7 +46,7 @@ public class PublicationFragment extends Fragment implements RecyclerItemTouchLi
         if (publications == null) {
             presenter.getPublications();
         }
-        ((AppBarCustomizer) getActivity()).setScrollabelAppBarVisible(false, null);
+//        ((AppBarCustomizer) getActivity()).setScrollabelAppBarVisible(false, null);
         return root;
     }
 
@@ -67,9 +69,12 @@ public class PublicationFragment extends Fragment implements RecyclerItemTouchLi
 
     @Override
     public void onItemClick(View view, int position) {
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("selectedPublicationKey", publications.get(position));
-        VFUtil.replaceFragmentToContent(getActivity(), DetailFragment.TAG, bundle);
+//        Bundle bundle = new Bundle();
+//        bundle.putParcelable("com.android.lofm.voxfeeddemo.model.selectedPublicationKey", publications.get(position));
+//        VFUtil.replaceFragmentToContent(getActivity(), DetailFragment.TAG, bundle);
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
+        intent.putExtra("com.android.lofm.voxfeeddemo.model.selectedPublicationKey", publications.get(position));
+        startActivity(intent);
     }
 
     @Override

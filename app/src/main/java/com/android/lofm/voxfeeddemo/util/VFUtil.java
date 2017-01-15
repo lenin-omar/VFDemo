@@ -62,6 +62,7 @@ public class VFUtil {
         try {
             formatted = formatter.format(rawQty);
         } catch (IllegalArgumentException e) {
+            e.printStackTrace();
             formatted = String.valueOf(rawQty);
         }
         return formatted;

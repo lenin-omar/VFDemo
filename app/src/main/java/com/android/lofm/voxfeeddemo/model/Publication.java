@@ -36,7 +36,6 @@ public class Publication implements Parcelable {
         brand = (Brand) in.readValue(Brand.class.getClassLoader());
         post = (Post) in.readValue(Post.class.getClassLoader());
         stats = (Stats) in.readValue(Stats.class.getClassLoader());
-        campaign = (Campaign) in.readValue(Campaign.class.getClassLoader());
         earnings = in.readDouble();
     }
 
@@ -122,6 +121,12 @@ public class Publication implements Parcelable {
         dest.writeString(id);
         dest.writeString(date);
         dest.writeString(socialNetwork);
+        dest.writeValue(user);
+        dest.writeValue(campaign);
+        dest.writeValue(brand);
+        dest.writeValue(post);
+        dest.writeValue(stats);
+        dest.writeDouble(earnings);
     }
 
 }

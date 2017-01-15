@@ -44,7 +44,7 @@ public class DetailFragment extends Fragment implements RecyclerItemTouchListene
         publication = getArguments().getParcelable("selectedPublicationKey");
         postDetails = detailPresenter.getDetailsHashMap(publication);
         adapter.setSelectedPublication(postDetails);
-        ((AppBarCustomizer) getActivity()).setScrollabelAppBarVisible(true, postDetails);
+//        ((AppBarCustomizer) getActivity()).setScrollabelAppBarVisible(true, postDetails);
         return root;
     }
 
